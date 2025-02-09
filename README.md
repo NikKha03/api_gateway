@@ -55,3 +55,6 @@ spring:
             user-name-attribute: preferred_username
 ```
 
+**После авторизации через API Gateway можно сделать с клиента GET запрос на получение данных авторизованного пользователя:**
+
+```http://localhost:8761/apiEureka/user/get```
