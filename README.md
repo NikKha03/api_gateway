@@ -13,7 +13,7 @@ git clone https://github.com/NikKha03/api_gateway.git
 Добавить ```application.yaml``` файл
 
 ```angular2html
-cd api_gateway/api_gateway/src/main/resources && touch application.yaml
+cd api_gateway/ApiGateway/src/main/resources && touch application.yaml
 ```
 
 Заполнить ```application.yaml``` файл своими данными
