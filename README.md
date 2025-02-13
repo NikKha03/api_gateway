@@ -1,6 +1,6 @@
 # api_gateway
 
-Репозиторий содержит в себе минимально настроенный API Gateway на базе Spring Eureka, подключенный к Keycloak для авторизации пользователей.
+Репозиторий содержит в себе EurekaServer и минимально настроенный API Gateway на базе Spring Cloud, подключенный к Keycloak для авторизации пользователей.
 
 **Для начала работы необходимо:**
 
@@ -13,30 +13,37 @@ git clone https://github.com/NikKha03/api_gateway.git
 Добавить ```application.yaml``` файл
 
 ```angular2html
-cd api_gateway/src/main/resources && touch application.yaml
+cd api_gateway/api_gateway/src/main/resources && touch application.yaml
 ```
 
 Заполнить ```application.yaml``` файл своими данными
 
 ```angular2html
 eureka:
-  instance:
-    hostname: localhost
   client:
-    register-with-eureka: true
-    fetch-registry: false
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://localhost:8761/eureka/  
+    register-with-eureka: true   
+    fetch-registry: true         
+  instance:
+    prefer-ip-address: true
 server:
-  port: 8761
+  port: 8080
 
 dop-urls:
   main-page: your-url
   allowed-origins: your-origins
 
 spring:
+  main:
+    web-application-type: reactive
   application:
-    name: EurekaServer
+    name: ApiGateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
   security:
     oauth2:
       client:
